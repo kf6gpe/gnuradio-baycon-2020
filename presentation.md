@@ -28,7 +28,7 @@
 * Sample rates should be at least 2x maximum frequency rate (Nyquist theorem)
 
 # Sampling a signal
-![source: https://wiki.gnuradio.org/index.php/File:Cont_to_digital.png](images/cont-to-digital.png)
+![source: Wikipedia; https://wiki.gnuradio.org/index.php/File:Cont_to_digital.png](images/cont-to-digital.png)
 
 # Sampling a signal - things to watch out for
 * Tradeoff between sample rate & computing requirements
@@ -46,12 +46,14 @@
 * Sometimes a low noise lower-resolution A/D is better than a higher resolution A/D!
 
 # Aliasing in sampling
-![source: https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem#/media/File:CPT-sound-nyquist-thereom-1.5percycle.svg](images/pericycle.png)
+![source: Wikipedia; https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem#/media/File:CPT-sound-nyquist-thereom-1.5percycle.svg](images/pericycle.png)
 
 # Aliasing in the frequency domain
-![source: https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem](images/aliasing.png)
+![source: Wikpedia; https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem](images/aliasing.png)
 
 # Block diagram of a typical SDR
+![source: Wikipedia; https://commons.wikimedia.org/wiki/File:SDR_et_WF.svg](images/sdr.png)
+
 
 # A word on hardware
 # Getting GNU Radio
