@@ -18,7 +18,7 @@ EXPORTED_DOCS=\
 
 RM=/bin/rm
 
-PANDOC=/usr/bin/pandoc
+PANDOC=/usr/local/bin/pandoc
 
 PANDOC_OPTIONS=--standalone
 
@@ -34,7 +34,7 @@ PANDOC_PPTX_OPTIONS=-t pptx
 
 %.pdf : %.md
 	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_PDF_OPTIONS) -o $@ $<
-	
+
 %.pptx : %.md
 	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_PPTX_OPTIONS) -o $@ $<
 
