@@ -18,7 +18,7 @@ EXPORTED_DOCS=\
 
 RM=/bin/rm
 
-PANDOC=/usr/local/bin/pandoc
+PANDOC=/usr/bin/pandoc
 
 PANDOC_OPTIONS=--standalone
 
