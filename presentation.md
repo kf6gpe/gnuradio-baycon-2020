@@ -104,4 +104,4 @@ https://wiki.gnuradio.org/index.php/Guided_Tutorial_PSK_Demodulation
 
 
 
-
+Raspberry Pi 2 or beyond should work
