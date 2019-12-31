@@ -1,6 +1,6 @@
 % SDR with GNU Radio
 % Ray Rischpater, KF6GPE kf6gpe@arrl.net | kf6gpe.org  
-% BayCon 2020, 8 February 2019
+% BayCon 2020, 8 February 2020
 
 # What we're talking about today
 * What's GNU Radio?
@@ -8,8 +8,7 @@
 * A word on hardware
 * Getting GNU Radio
 * GNU Radio Companion
-* Writing 
-
+* Writing Modules
 
 
 # What's GNU Radio?
@@ -17,6 +16,7 @@
 * Provides signal-processing blocks to build software-defined radios
 * Works with readily available hardware
 * Runs on Linux (best), Windows and macOS
+* Runs on both Intel & ARM (including Raspberry Pi!)
 * Used in hobby and commercial applications
 
 # A very basic introduction to SDR
@@ -25,7 +25,7 @@
 
 # Sampling a signal
 * Analog signals sampled periodically
-* Sample rates should be at least 2x maximum frequency rate (Nyquist theorem)
+* Sample rates should be at least twice maximum frequency (Nyquist theorem)
 
 # Sampling a signal
 ![source: Wikipedia; https://wiki.gnuradio.org/index.php/File:Cont_to_digital.png](images/cont-to-digital.png)
@@ -38,11 +38,11 @@
 # A word on sampling
 * More samples mean more expensive A/D converters
 * More samples means more computing power to process the samples
-* Faster sampling means higher cost!
+* Faster sampling means higher cost
 
 # A word on resolution
-* Determines the number of discrete steps measurable in the amplitude of a signal
-* Higher resolution generally means higher cost A/D
+* The number of discrete steps measurable in the range of a signal
+* Higher resolution generally means higher cost A/D converters
 * Sometimes a lower noise lower-resolution A/D is better than a higher resolution A/D!
 
 # Aliasing in sampling
@@ -52,9 +52,9 @@
 ![source: Wikpedia; https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem](images/aliasing.png)
 
 # Filtering
-* Uses signal processing on the digitally sampled signal.
-* Requires fast processsing for addition & multiplication
-* Depending on sample rate, can create far steeper cutoffs for the same component prices
+* Uses signal processing on the digitally sampled signal
+* Requires fast processsing for additions & multiplications
+* Digital filters can often create far steeper cutoffs for the same component cost
 
 # Filtering: finite impulse response filter
 ![source: Wikipedia; https://en.wikipedia.org/wiki/Digital_filter](images/fir.png)
@@ -63,24 +63,25 @@
 ![source: Wikipedia; https://en.wikipedia.org/wiki/Infinite_impulse_response](images/iir.png)
 
 # Modulation
-* More math!, e.g.
-* AM can be accomplished multiplying the carrier by the audio signal
-* BPSK can be accomplished by changing the phase of the carrier
+* More math!
+* e.g., AM can be accomplished multiplying the carrier by the audio signal
+* e.g., BPSK can be accomplished by changing the phase of the carrier
+* Other modulations possible, too!
 
 # Demodulation
-* Still more math
+* Still more math!
 * Additional use of signal processing can provide symbol recovery, error detection & timing synchronization
 
 # Block diagram of a typical SDR
 ![source: Wikipedia; https://commons.wikimedia.org/wiki/File:SDR_et_WF.svg](images/sdr.png)
 
 # A word on hardware
-* You need a moderately fast PC running Linux, Windows, or macOS.
+* You need a moderately fast PC or Raspberry Pi running Linux, Windows, or macOS
 * For RF experiments, you need some sort of SDR hardware
 * [RTL-SDR](http://www.rtl-sdr.com) is a cheap receiver (check the raffle table!) 
 * [hackRF](https://greatscottgadgets.com/hackrf/) is a popular transceiver
-* [LimeSDR](https://limemicro.com/products/boards/limesdr/) is another newer transceiver platform
-* Lots of other choices!
+* [LimeSDR](https://limemicro.com/products/boards/limesdr/) is another newer transceiver
+* Lots of other choices; just check for GNU Radio compatibility first
 
 # What does GNU Radio give me?
 * Over 400 DSP blocks, including filters, modulators, demodulators, visualization tools
@@ -89,11 +90,11 @@
   
 
 # Getting GNU Radio
-* On Linux, use your package manager.
-* On Windows, use an installer.
-* On macOS, use MacPorts.
-* Did I mention that it's open source! You can also build from the source code.
-* See the [GNU Radio Wiki](https://wiki.gnuradio.org/index.php/InstallingGR) for more details.
+* On Linux, use your package manager
+* On Windows, use an installer
+* On macOS, use MacPorts
+* Did I mention that it's open source! You can also build from the source code
+* See the [GNU Radio Wiki](https://wiki.gnuradio.org/index.php/InstallingGR) for more details
   
 # GNU Radio Companion
 
