@@ -97,8 +97,35 @@
 * See the [GNU Radio Wiki](https://wiki.gnuradio.org/index.php/InstallingGR) for more details
   
 # GNU Radio Companion
+* Drag and drop construction of SDRs using modules
+* Uses a data-flow paradigm for connecting modules
+* Provides controls and visualization tools
 
 # Modeling SDRs using flow diagrams
+* Radio components connected by signal paths
+* Each signal is a stream of numbers
+* Modules transform the number streams in some way
+* Sources provide data, sinks acccept it
+
+# Modules and variables
+* Most elements of your radio are functional blocks that do something
+* Variables hold numbers (frequencies, sample rates, etc)
+* Modules get connections, variables just sit there.
+
+# Graphical User Interface components
+* Some sinks display data (e.g., waterfall)
+* Some GUI controls to set things like variables (e.g., knobs)
+
+# Basic use
+* Drag and drop modules
+* Click to create data flow connections
+* Control-F is your friend (finds modules)
+
+# A simple broadcast FM receiver
+![source: by the author](images/bfm.png)
+
+# The radio source
+![source: by the author](images/rtlsdr.png)
 
 
 https://wiki.gnuradio.org/index.php/Guided_Tutorial_PSK_Demodulation
