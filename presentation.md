@@ -10,7 +10,6 @@
 * GNU Radio Companion
 * Using Python or C++ to write a module
 
-
 # What's GNU Radio?
 * Free & open source software
 * Provides signal-processing blocks to build software-defined radios
@@ -83,11 +82,6 @@
 * [LimeSDR](https://limemicro.com/products/boards/limesdr/) is another newer transceiver
 * Lots of other choices; just check for GNU Radio compatibility first
   
-# What does GNU Radio give me?
-* Over 400 DSP blocks, including filters, modulators, demodulators, visualization tools
-* Flow-based construction of radios & subsystems
-* The ability to add new blocks with code in Python or C++
-  
 
 # Getting GNU Radio
 * On Linux, use your package manager
@@ -96,16 +90,22 @@
 * Did I mention that it's open source! You can also build from the source code
 * See the [GNU Radio Wiki](https://wiki.gnuradio.org/index.php/InstallingGR) for more details
   
-# GNU Radio Companion
-* Drag and drop construction of SDRs using modules
-* Uses a data-flow paradigm for connecting modules
-* Provides controls and visualization tools
+# What does GNU Radio give me?
+* Over 400 DSP modules, including filters, modulators, demodulators, visualization tools
+* Flow-based construction of radios & subsystems
+* The ability to add new modules with code in Python or C++
+* A data-flow model for constructing SDRs.
+* GNU Radio Companion (GRC)
 
 # Modeling SDRs using flow diagrams
 * Radio components connected by signal paths
 * Each signal is a stream of numbers
 * Modules transform the number streams in some way
-* Sources provide data, sinks acccept it
+* Sources provide data, sinks acccept data
+
+# GNU Radio Companion
+* Drag and drop construction of SDRs using modules
+* Provides controls and visualization tools
 
 # Modules and variables
 * Most elements of your radio are functional blocks that do something
@@ -124,13 +124,16 @@
 # Toolbar
 ![source: by the author](images/grc-toolbar.png)
 
+# A simple narrowband FM receiver
+![source: by the author](images/nfm-flow.png)
+
 # Running the flow graph
 * First GRC creates a Python file of your flow graph
 * The Python file uses code from GNU Radio
 * Then GRC invokes GNU Radio with your Python file
 
-# A simple narrowband FM receiver
-![source: by the author](images/nfm-flow.png)
+# Under the hood: the flow graph in Python
+![source: by the author](images/block-py.png)
 
 # A simple narrowband FM receiver
 ![source: by the author](images/nfm-ui.png)
