@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ray Rischpater, KF6GPE kf6gpe@arrl.net | kf6gpe.org" />
+  <title>SDR with GNU Radio</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="https://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="https://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">SDR with GNU Radio</h1>
+  <p class="author">
+Ray Rischpater, KF6GPE kf6gpe@arrl.net | kf6gpe.org
+  </p>
+  <p class="date">BayCon 2020, 8 February 2020</p>
+</div>
+<div id="what-were-talking-about-today" class="slide section level1">
+<h1>What we’re talking about today</h1>
+<ul>
+<li>What’s GNU Radio?</li>
+<li>A very basic introduction to SDR</li>
+<li>A word on hardware</li>
+<li>Getting GNU Radio</li>
+<li>GNU Radio Companion</li>
+<li>Using Python or C++ to write a module</li>
+</ul>
+</div>
+<div id="whats-gnu-radio" class="slide section level1">
+<h1>What’s GNU Radio?</h1>
+<ul>
+<li>Free &amp; open source software</li>
+<li>Provides signal-processing blocks to build software-defined radios</li>
+<li>Works with readily available hardware</li>
+<li>Runs on Linux (best), Windows and macOS</li>
+<li>Runs on both Intel &amp; ARM (including Raspberry Pi!)</li>
+<li>Used in hobby and commercial applications</li>
+</ul>
+</div>
+<div id="a-very-basic-introduction-to-sdr" class="slide section level1">
+<h1>A very basic introduction to SDR</h1>
+<ul>
+<li>Uses digital representations of signals</li>
+<li>Uses lots of math to implement things like modulation &amp; filters</li>
+</ul>
+</div>
+<div id="sampling-a-signal" class="slide section level1">
+<h1>Sampling a signal</h1>
+<ul>
+<li>Analog signals sampled periodically</li>
+<li>Sample rates should be at least twice maximum frequency (Nyquist theorem)</li>
+</ul>
+</div>
+<div id="sampling-a-signal-1" class="slide section level1">
+<h1>Sampling a signal</h1>
+<div class="figure">
+<img src="images/cont-to-digital.png" alt="source: Wikipedia; https://wiki.gnuradio.org/index.php/File:Cont_to_digital.png" />
+<p class="caption">source: Wikipedia; https://wiki.gnuradio.org/index.php/File:Cont_to_digital.png</p>
+</div>
+</div>
+<div id="sampling-a-signal---things-to-look-out-for" class="slide section level1">
+<h1>Sampling a signal - things to look out for</h1>
+<ul>
+<li>Tradeoff between sample rate &amp; computing requirements</li>
+<li>Tradeoff between cost, sample rate, and sample resolution</li>
+<li>Aliasing</li>
+</ul>
+</div>
+<div id="a-word-on-sampling" class="slide section level1">
+<h1>A word on sampling</h1>
+<ul>
+<li>More samples mean more expensive A/D converters</li>
+<li>More samples means more computing power to process the samples</li>
+<li>Faster sampling means higher cost</li>
+</ul>
+</div>
+<div id="a-word-on-resolution" class="slide section level1">
+<h1>A word on resolution</h1>
+<ul>
+<li>The number of discrete steps measurable in the range of a signal</li>
+<li>Higher resolution generally means higher cost A/D converters</li>
+<li>Sometimes a lower noise lower-resolution A/D is better than a higher resolution A/D!</li>
+</ul>
+</div>
+<div id="aliasing-in-sampling" class="slide section level1">
+<h1>Aliasing in sampling</h1>
+<div class="figure">
+<img src="images/pericycle.png" alt="source: Wikipedia; https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem#/media/File:CPT-sound-nyquist-thereom-1.5percycle.svg" />
+<p class="caption">source: Wikipedia; https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem#/media/File:CPT-sound-nyquist-thereom-1.5percycle.svg</p>
+</div>
+</div>
+<div id="aliasing-in-the-frequency-domain" class="slide section level1">
+<h1>Aliasing in the frequency domain</h1>
+<div class="figure">
+<img src="images/aliasing.png" alt="source: Wikpedia; https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem" />
+<p class="caption">source: Wikpedia; https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem</p>
+</div>
+</div>
+<div id="filtering" class="slide section level1">
+<h1>Filtering</h1>
+<ul>
+<li>Uses signal processing on the digitally sampled signal</li>
+<li>Requires fast processsing for additions &amp; multiplications</li>
+<li>Digital filters can often create far steeper cutoffs for the same component cost</li>
+</ul>
+</div>
+<div id="filtering-finite-impulse-response-filter" class="slide section level1">
+<h1>Filtering: finite impulse response filter</h1>
+<div class="figure">
+<img src="images/fir.png" alt="source: Wikipedia; https://en.wikipedia.org/wiki/Digital_filter" />
+<p class="caption">source: Wikipedia; https://en.wikipedia.org/wiki/Digital_filter</p>
+</div>
+</div>
+<div id="filtering-infinite-impulse-response-filter" class="slide section level1">
+<h1>Filtering: Infinite impulse response filter</h1>
+<div class="figure">
+<img src="images/iir.png" alt="source: Wikipedia; https://en.wikipedia.org/wiki/Infinite_impulse_response" />
+<p class="caption">source: Wikipedia; https://en.wikipedia.org/wiki/Infinite_impulse_response</p>
+</div>
+</div>
+<div id="modulation" class="slide section level1">
+<h1>Modulation</h1>
+<ul>
+<li>More math!</li>
+<li>e.g., AM can be accomplished multiplying the carrier by the audio signal</li>
+<li>e.g., BPSK can be accomplished by changing the phase of the carrier</li>
+<li>Other modulations possible, too!</li>
+</ul>
+</div>
+<div id="demodulation" class="slide section level1">
+<h1>Demodulation</h1>
+<ul>
+<li>Still more math!</li>
+<li>Additional use of signal processing can provide symbol recovery, error detection &amp; timing synchronization</li>
+</ul>
+</div>
+<div id="block-diagram-of-a-typical-sdr" class="slide section level1">
+<h1>Block diagram of a typical SDR</h1>
+<div class="figure">
+<img src="images/sdr.png" alt="source: Wikipedia; https://commons.wikimedia.org/wiki/File:SDR_et_WF.svg" />
+<p class="caption">source: Wikipedia; https://commons.wikimedia.org/wiki/File:SDR_et_WF.svg</p>
+</div>
+</div>
+<div id="a-word-on-hardware" class="slide section level1">
+<h1>A word on hardware</h1>
+<ul>
+<li>You need a moderately fast PC or Raspberry Pi running Linux, Windows, or macOS</li>
+<li>For RF experiments, you need some sort of SDR hardware</li>
+<li><a href="http://www.rtl-sdr.com">RTL-SDR</a> is a cheap receiver (check the raffle table!)</li>
+<li><a href="https://greatscottgadgets.com/hackrf/">hackRF</a> is a popular transceiver</li>
+<li><a href="https://limemicro.com/products/boards/limesdr/">LimeSDR</a> is another newer transceiver</li>
+<li>Lots of other choices; just check for GNU Radio compatibility first</li>
+</ul>
+</div>
+<div id="what-does-gnu-radio-give-me" class="slide section level1">
+<h1>What does GNU Radio give me?</h1>
+<ul>
+<li>Over 400 DSP blocks, including filters, modulators, demodulators, visualization tools</li>
+<li>Flow-based construction of radios &amp; subsystems</li>
+<li>The ability to add new blocks with code in Python or C++</li>
+</ul>
+</div>
+<div id="getting-gnu-radio" class="slide section level1">
+<h1>Getting GNU Radio</h1>
+<ul>
+<li>On Linux, use your package manager</li>
+<li>On Windows, use an installer</li>
+<li>On macOS, use MacPorts</li>
+<li>Did I mention that it’s open source! You can also build from the source code</li>
+<li>See the <a href="https://wiki.gnuradio.org/index.php/InstallingGR">GNU Radio Wiki</a> for more details</li>
+</ul>
+</div>
+<div id="gnu-radio-companion" class="slide section level1">
+<h1>GNU Radio Companion</h1>
+<ul>
+<li>Drag and drop construction of SDRs using modules</li>
+<li>Uses a data-flow paradigm for connecting modules</li>
+<li>Provides controls and visualization tools</li>
+</ul>
+</div>
+<div id="modeling-sdrs-using-flow-diagrams" class="slide section level1">
+<h1>Modeling SDRs using flow diagrams</h1>
+<ul>
+<li>Radio components connected by signal paths</li>
+<li>Each signal is a stream of numbers</li>
+<li>Modules transform the number streams in some way</li>
+<li>Sources provide data, sinks acccept it</li>
+</ul>
+</div>
+<div id="modules-and-variables" class="slide section level1">
+<h1>Modules and variables</h1>
+<ul>
+<li>Most elements of your radio are functional blocks that do something</li>
+<li>Variables hold numbers (frequencies, sample rates, etc)</li>
+<li>Modules get connections, variables just sit there.</li>
+</ul>
+</div>
+<div id="graphical-user-interface-components" class="slide section level1">
+<h1>Graphical User Interface components</h1>
+<ul>
+<li>Some sinks display data (e.g., waterfall)</li>
+<li>Some GUI controls to set things like variables (e.g., knobs)</li>
+</ul>
+</div>
+<div id="basic-use" class="slide section level1">
+<h1>Basic use</h1>
+<ul>
+<li>Drag and drop modules</li>
+<li>Click to create data flow connections</li>
+<li>Control-F is your friend (finds modules)</li>
+</ul>
+</div>
+<div id="toolbar" class="slide section level1">
+<h1>Toolbar</h1>
+<div class="figure">
+<img src="images/grc-toolbar.png" alt="source: by the author" />
+<p class="caption">source: by the author</p>
+</div>
+</div>
+<div id="running-the-flow-graph" class="slide section level1">
+<h1>Running the flow graph</h1>
+<ul>
+<li>First GRC creates a Python file of your flow graph</li>
+<li>The Python file uses code from GNU Radio</li>
+<li>Then GRC invokes GNU Radio with your Python file</li>
+</ul>
+</div>
+<div id="a-simple-narrowband-fm-receiver" class="slide section level1">
+<h1>A simple narrowband FM receiver</h1>
+<div class="figure">
+<img src="images/nfm-flow.png" alt="source: by the author" />
+<p class="caption">source: by the author</p>
+</div>
+</div>
+<div id="a-simple-narrowband-fm-receiver-1" class="slide section level1">
+<h1>A simple narrowband FM receiver</h1>
+<div class="figure">
+<img src="images/nfm-ui.png" alt="source: by the author" />
+<p class="caption">source: by the author</p>
+</div>
+</div>
+<div id="section" class="slide section level1">
+<h1></h1>
+</div>
+</body>
+</html>
