@@ -8,7 +8,7 @@
 * A word on hardware
 * Getting GNU Radio
 * GNU Radio Companion
-* Writing Modules
+* Using Python or C++ to write a module
 
 
 # What's GNU Radio?
@@ -82,7 +82,7 @@
 * [hackRF](https://greatscottgadgets.com/hackrf/) is a popular transceiver
 * [LimeSDR](https://limemicro.com/products/boards/limesdr/) is another newer transceiver
 * Lots of other choices; just check for GNU Radio compatibility first
-
+  
 # What does GNU Radio give me?
 * Over 400 DSP blocks, including filters, modulators, demodulators, visualization tools
 * Flow-based construction of radios & subsystems
@@ -121,15 +121,18 @@
 * Click to create data flow connections
 * Control-F is your friend (finds modules)
 
-# A simple broadcast FM receiver
-![source: by the author](images/bfm.png)
+# Toolbar
+![source: by the author](images/grc-toolbar.png)
 
-# The radio source
-![source: by the author](images/rtlsdr.png)
+# Running the flow graph
+* First GRC creates a Python file of your flow graph
+* The Python file uses code from GNU Radio
+* Then GRC invokes GNU Radio with your Python file
 
+# A simple narrowband FM receiver
+![source: by the author](images/nfm-flow.png)
 
-https://wiki.gnuradio.org/index.php/Guided_Tutorial_PSK_Demodulation
+# A simple narrowband FM receiver
+![source: by the author](images/nfm-ui.png)
 
-
-
-Raspberry Pi 2 or beyond should work
+# 
