@@ -25,6 +25,7 @@
 # Sampling a signal
 * Analog signals sampled periodically
 * Sample rates should be at least twice maximum frequency (Nyquist theorem)
+* Sampling isn't just about RF, it's about AF, too
 
 # Sampling a signal
 ![source: Wikipedia; https://wiki.gnuradio.org/index.php/File:Cont_to_digital.png](images/cont-to-digital.png)
@@ -51,15 +52,10 @@
 ![source: Wikpedia; https://en.wikipedia.org/wiki/Nyquist–Shannon_sampling_theorem](images/aliasing.png)
 
 # Filtering
+* Math!
 * Uses signal processing on the digitally sampled signal
 * Requires fast processsing for additions & multiplications
 * Digital filters can often create far steeper cutoffs for the same component cost
-
-# Filtering: finite impulse response filter
-![source: Wikipedia; https://en.wikipedia.org/wiki/Digital_filter](images/fir.png)
-
-# Filtering: Infinite impulse response filter
-![source: Wikipedia; https://en.wikipedia.org/wiki/Infinite_impulse_response](images/iir.png)
 
 # Modulation
 * More math!
@@ -87,7 +83,7 @@
 * On Linux, use your package manager
 * On Windows, use an installer
 * On macOS, use MacPorts
-* Did I mention that it's open source! You can also build from the source code
+* Did I mention that it's open source! You can also build from source
 * See the [GNU Radio Wiki](https://wiki.gnuradio.org/index.php/InstallingGR) for more details
   
 # What does GNU Radio give me?
@@ -104,8 +100,7 @@
 * Sources provide data, sinks acccept data
 
 # GNU Radio Companion
-* Drag and drop construction of SDRs using modules
-* Provides controls and visualization tools
+![source: by the author](images/grc.png)
 
 # Modules and variables
 * Most elements of your radio are functional blocks that do something
@@ -121,9 +116,6 @@
 * Click to create data flow connections
 * Control-F is your friend (finds modules)
 
-# Toolbar
-![source: by the author](images/grc-toolbar.png)
-
 # A simple narrowband FM receiver
 ![source: by the author](images/nfm-flow.png)
 
@@ -138,4 +130,26 @@
 # A simple narrowband FM receiver
 ![source: by the author](images/nfm-ui.png)
 
-# 
+# Creating modules & radios
+* Uses Python or C++.
+* Define modules using XML
+* Implement them using Python or C++
+* Uses the same data-flow paradigm, just in code.
+
+# Tips
+* Work through the tutorial
+* Look at error messages closely
+* Windows and macOS ports are flakier than Linux
+* Get your SDR working with the software that comes with it first.
+
+# Resources - Hardware
+* [RTL-SDR](http://www.rtl-sdr.com) is a cheap receiver (check the raffle table!) 
+* [hackRF](https://greatscottgadgets.com/hackrf/) is a popular transceiver
+* [LimeSDR](https://limemicro.com/products/boards/limesdr/)
+
+# Resources - Software
+* [GNU Radio](https://www.gnuradio.org/)
+* [GNU Radio Wiki](https://wiki.gnuradio.org/)
+* [GNU Radio Live SDR Environment](https://wiki.gnuradio.org/index.php/GNU_Radio_Live_SDR_Environment)
+
+
