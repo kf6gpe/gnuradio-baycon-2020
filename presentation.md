@@ -111,11 +111,6 @@
 * Some sinks display data (e.g., waterfall)
 * Some GUI controls to set things like variables (e.g., knobs)
 
-# Basic use
-* Drag and drop modules
-* Click to create data flow connections
-* Control-F is your friend (finds modules)
-
 # A simple narrowband FM receiver
 ![source: by the author](images/nfm-flow.png)
 
@@ -149,7 +144,11 @@
 
 # Resources - Software
 * [GNU Radio](https://www.gnuradio.org/)
-* [GNU Radio Wiki](https://wiki.gnuradio.org/)
 * [GNU Radio Live SDR Environment](https://wiki.gnuradio.org/index.php/GNU_Radio_Live_SDR_Environment)
 
+
+# Resources - Reading
+* Recent editions of the ARRL Handbook
+* "Digital Signal Processing and GNU Radio Companion", QEX July/August 2014
+* [GNU Radio Wiki](https://wiki.gnuradio.org/)
 
